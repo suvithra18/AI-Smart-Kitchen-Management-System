@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    📜 Stock History
+</h1>
+
+<table class="table table-bordered">
+
+    <thead>
+
+        <tr>
+
+            <th>Ingredient</th>
+            <th>Action</th>
+            <th>Quantity</th>
+            <th>User</th>
+            <th>Date</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for h in histories %}
+
+            <tr>
+
+                <td>{{ h.ingredient.name }}</td>
+
+                <td>{{ h.action }}</td>
+
+                <td>{{ h.quantity }}</td>
+
+                <td>{{ h.user.username }}</td>
+
+                <td>{{ h.created_at }}</td>
+
+            </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="mb-5">
+    📊 Analytics Dashboard
+</h1>
+
+<!-- Stats Cards -->
+
+<div class="row mb-5">
+
+    <div class="col-md-3">
+
+        <div class="card shadow border-0 p-4 text-center">
+
+            <h2>
+                {{ total_ingredients }}
+            </h2>
+
+            <p>
+                Total Ingredients
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow border-0 p-4 text-center">
+
+            <h2>
+                {{ low_stock_count }}
+            </h2>
+
+            <p>
+                Low Stock Items
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow border-0 p-4 text-center">
+
+            <h2>
+                {{ shopping_count }}
+            </h2>
+
+            <p>
+                Shopping List Items
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow border-0 p-4 text-center">
+
+            <h2>
+                {{ expired_count }}
+            </h2>
+
+            <p>
+                Expired Items
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Chart -->
+
+<div class="card shadow border-0 p-5">
+
+    <h3 class="mb-4">
+        🍽️ Most Used Recipes
+    </h3>
+
+    <canvas id="recipeChart"></canvas>
+
+</div>
+
+<!-- Chart.js -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const recipeLabels = "{{ recipe_names|safe }}";
+const recipeData = "{{ recipe_totals|safe }}";
+
+const ctx = document.getElementById('recipeChart');
+
+new Chart(ctx, {
+
+    type: 'bar',
+
+    data: {
+
+        labels: "{{ recipe_names|safe }}",
+
+        datasets: [{
+
+            label: 'Recipe Usage',
+
+            data: recipeData,
+
+            borderWidth: 1
+        }]
+    },
+
+       options: {
+
+        responsive: true,
+
+        scales: {
+
+            y: {
+
+                beginAtZero: true,
+
+                ticks: {
+
+                    stepSize: 1
+                }
+            }
+        }
+    }
+});
+
+</script>
+
+{% endblock %}

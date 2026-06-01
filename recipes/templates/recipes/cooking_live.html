@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow-lg border-0 rounded-4 p-5 text-center">
+
+        <!-- TITLE -->
+
+        <h1 class="fw-bold mb-4">
+
+            🍲 Preparing {{ recipe.name }}
+
+        </h1>
+
+        <!-- IMAGE -->
+
+        {% if recipe.image %}
+
+            <img
+
+                src="{{ recipe.image.url }}"
+
+                class="img-fluid rounded-4 shadow"
+
+                style="
+                    height:300px;
+                    object-fit:cover;
+                "
+            >
+
+        {% endif %}
+
+        <!-- DETAILS -->
+
+        <div class="mt-5">
+
+            <h3>
+
+                👥 Cooking for
+                {{ persons }} persons
+
+            </h3>
+
+            <h4 class="mt-3 text-muted">
+
+                ⏱ Cooking Time:
+                {{ recipe.cooking_time }} mins
+
+            </h4>
+
+        </div>
+
+        <!-- PROGRESS BAR -->
+
+        <div class="mt-5">
+
+            <div
+                class="progress"
+                style="height:35px;"
+            >
+
+                <div
+
+                    id="progressBar"
+
+                    class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+
+                    style="width:0%"
+
+                >
+
+                    0%
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- STATUS -->
+
+        <div class="mt-4">
+
+            <h3 id="statusText">
+
+                👨‍🍳 Preparing Ingredients...
+
+            </h3>
+
+        </div>
+
+        <!-- READY MESSAGE -->
+
+        <div
+            id="readyMessage"
+            class="alert alert-success mt-5 d-none"
+        >
+
+            <h2>
+
+                🎉 {{ recipe.name }} Ready!
+
+            </h2>
+
+            <p>
+
+                Enjoy your meal 🍽
+
+            </p>
+
+        </div>
+
+        <!-- BACK -->
+
+        <div class="mt-5">
+
+            <a
+                href="{% url 'recipe_list' %}"
+                class="btn btn-dark btn-lg rounded-pill"
+            >
+
+                🔙 Back to Recipes
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+let progress = 0;
+
+let progressBar = document.getElementById(
+
+    'progressBar'
+);
+
+let statusText = document.getElementById(
+
+    'statusText'
+);
+
+let readyMessage = document.getElementById(
+
+    'readyMessage'
+);
+
+
+// COOKING STATES
+
+const cookingStates = [
+
+    "👨‍🍳 Preparing Ingredients...",
+
+    "🔥 Cooking Started...",
+
+    "🍲 Mixing Flavors...",
+
+    "🥘 Almost Ready...",
+
+    "🎉 Recipe Ready!"
+];
+
+
+// PROGRESS FUNCTION
+
+let interval = setInterval(function(){
+
+    progress += 20;
+
+    progressBar.style.width =
+
+        progress + "%";
+
+    progressBar.innerHTML =
+
+        progress + "%";
+
+    let stateIndex = Math.floor(
+
+        progress / 20
+    ) - 1;
+
+    if(stateIndex >= 0){
+
+        statusText.innerHTML =
+
+            cookingStates[stateIndex];
+    }
+
+    if(progress >= 100){
+
+        clearInterval(interval);
+
+        readyMessage.classList.remove(
+
+            'd-none'
+        );
+    }
+
+}, 2000);
+
+</script>
+
+{% endblock %}

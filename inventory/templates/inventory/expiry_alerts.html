@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    🗓️ Expiry Alerts
+</h1>
+
+<!-- Expiring Soon -->
+
+<h3 class="text-warning mb-3">
+    ⚠ Expiring Soon
+</h3>
+
+<div class="row">
+
+    {% for item in expiring_items %}
+
+        <div class="col-md-4 mb-3">
+
+            <div class="card border-warning shadow p-4">
+
+                <h4>
+                    {{ item.ingredient.name }}
+                </h4>
+
+                <p>
+                    Expiry Date:
+                    <b>
+                        {{ item.expiry_date }}
+                    </b>
+                </p>
+
+                <span class="badge bg-warning">
+                    Expiring Soon
+                </span>
+
+            </div>
+
+        </div>
+
+    {% empty %}
+
+        <p>
+            No expiring items.
+        </p>
+
+    {% endfor %}
+
+</div>
+
+<hr class="my-5">
+
+<!-- Expired -->
+
+<h3 class="text-danger mb-3">
+    ❌ Expired Items
+</h3>
+
+<div class="row">
+
+    {% for item in expired_items %}
+
+        <div class="col-md-4 mb-3">
+
+            <div class="card border-danger shadow p-4">
+
+                <h4>
+                    {{ item.ingredient.name }}
+                </h4>
+
+                <p>
+                    Expired On:
+                    <b>
+                        {{ item.expiry_date }}
+                    </b>
+                </p>
+
+                <span class="badge bg-danger">
+                    Expired
+                </span>
+
+            </div>
+
+        </div>
+
+    {% empty %}
+
+        <p>
+            No expired items.
+        </p>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

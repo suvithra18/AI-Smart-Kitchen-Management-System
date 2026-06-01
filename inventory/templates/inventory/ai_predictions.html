@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="mb-5">
+    🧠 AI Inventory Predictions
+</h1>
+
+<div class="row">
+
+    {% for item in predictions %}
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card shadow border-0 p-4">
+
+                <h3>
+                    {{ item.ingredient }}
+                </h3>
+
+                <hr>
+
+                <p>
+                    Current Stock:
+                    <b>
+                        {{ item.stock }}
+                    </b>
+                </p>
+
+                <p>
+                    Average Daily Usage:
+                    <b>
+                        {{ item.average_daily_usage }}
+                    </b>
+                </p>
+
+                <p>
+                    Estimated Remaining Days:
+                    <b>
+                        {{ item.remaining_days }}
+                    </b>
+                </p>
+
+                {% if item.status == 'CRITICAL' %}
+
+                    <div class="alert alert-danger">
+
+                        ⚠ Critical Stock
+
+                    </div>
+
+                {% else %}
+
+                    <div class="alert alert-success">
+
+                        ✅ Stock Stable
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

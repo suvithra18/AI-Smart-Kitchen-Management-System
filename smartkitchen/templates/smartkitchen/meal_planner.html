@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="text-center mb-5">
+
+        <h1 class="display-5 fw-bold">
+            🍽️ AI Meal Planner
+        </h1>
+
+        <p class="text-muted">
+
+            Personalized AI Diet Plan
+
+        </p>
+
+    </div>
+
+    <div class="card shadow-lg border-0 p-5 rounded-4">
+
+        <form method="GET">
+
+            <div class="row">
+
+                <div class="col-md-9">
+
+                    <select
+                        name="goal"
+                        class="form-select form-select-lg"
+                    >
+
+                        <option value="">
+                            Select Goal
+                        </option>
+
+                        <option value="weight_loss">
+
+                            Weight Loss
+
+                        </option>
+
+                        <option value="muscle_gain">
+
+                            Muscle Gain
+
+                        </option>
+
+                        <option value="weight_gain">
+
+                            Weight Gain
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <button
+                        class="btn btn-success btn-lg w-100"
+                    >
+
+                        Generate
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    {% if meal_plan %}
+
+        <div class="mt-5">
+
+           <h2 class="mb-4 text-capitalize">
+
+    🎯 {{ goal|title }}
+
+</h2>
+
+            <div class="row">
+
+                <!-- Breakfast -->
+
+                <div class="col-md-6 mb-4">
+
+                    <div class="card border-0 shadow p-4 h-100">
+
+                        <h3>
+                            🍳 Breakfast
+                        </h3>
+
+                        <hr>
+
+                        <ul>
+
+                            {% for item in meal_plan.breakfast %}
+
+                                <li>
+                                    {{ item }}
+                                </li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                <!-- Lunch -->
+
+                <div class="col-md-6 mb-4">
+
+                    <div class="card border-0 shadow p-4 h-100">
+
+                        <h3>
+                            🍛 Lunch
+                        </h3>
+
+                        <hr>
+
+                        <ul>
+
+                            {% for item in meal_plan.lunch %}
+
+                                <li>
+                                    {{ item }}
+                                </li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                <!-- Dinner -->
+
+                <div class="col-md-6 mb-4">
+
+                    <div class="card border-0 shadow p-4 h-100">
+
+                        <h3>
+                            🌙 Dinner
+                        </h3>
+
+                        <hr>
+
+                        <ul>
+
+                            {% for item in meal_plan.dinner %}
+
+                                <li>
+                                    {{ item }}
+                                </li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                <!-- Snacks -->
+
+                <div class="col-md-6 mb-4">
+
+                    <div class="card border-0 shadow p-4 h-100">
+
+                        <h3>
+                            🍎 Snacks
+                        </h3>
+
+                        <hr>
+
+                        <ul>
+
+                            {% for item in meal_plan.snacks %}
+
+                                <li>
+                                    {{ item }}
+                                </li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

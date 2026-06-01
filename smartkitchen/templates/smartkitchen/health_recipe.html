@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="text-center mb-5">
+
+        <h1 class="display-5 fw-bold">
+
+            🩺 Health Condition Recipe AI
+
+        </h1>
+
+        <p class="text-muted">
+
+            Smart Food Recommendation System
+
+        </p>
+
+    </div>
+
+    <div class="card shadow-lg border-0 p-5 rounded-4">
+
+        <form method="GET">
+
+            <div class="row">
+
+                <div class="col-md-9">
+
+                    <select
+                        name="condition"
+                        class="form-select form-select-lg"
+                    >
+
+                        <option value="">
+                            Select Health Condition
+                        </option>
+
+                        <option value="diabetes">
+
+                            Diabetes
+
+                        </option>
+
+                        <option value="bp">
+
+                            Blood Pressure
+
+                        </option>
+
+                        <option value="cholesterol">
+
+                            Cholesterol
+
+                        </option>
+
+                        <option value="pcod_pcos">
+
+    PCOD / PCOS Diet
+
+</option>
+
+                        <option value="high_protein">
+
+                            High Protein Diet
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <button
+                        class="btn btn-success btn-lg w-100"
+                    >
+
+                        Get Suggestions
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    {% if result %}
+
+        <div class="mt-5">
+
+            <h2 class="mb-4 text-capitalize">
+
+                🎯 {{ condition|title }}
+
+            </h2>
+
+            <div class="row">
+
+                <!-- Recommended -->
+
+                <div class="col-md-6 mb-4">
+
+                    <div class="card shadow-lg border-0 p-4 h-100">
+
+                        <h3 class="text-success">
+
+                            ✅ Recommended Foods
+
+                        </h3>
+
+                        <hr>
+
+                        <ul>
+
+                            {% for food in result.recommended %}
+
+                                <li class="fs-5">
+
+                                    {{ food }}
+
+                                </li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                <!-- Avoid -->
+
+                <div class="col-md-6 mb-4">
+
+                    <div class="card shadow-lg border-0 p-4 h-100">
+
+                        <h3 class="text-danger">
+
+                            ❌ Foods To Avoid
+
+                        </h3>
+
+                        <hr>
+
+                        <ul>
+
+                            {% for food in result.avoid %}
+
+                                <li class="fs-5">
+
+                                    {{ food }}
+
+                                </li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

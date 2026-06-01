@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow-lg border-0 rounded-4 p-5">
+
+        <!-- TITLE -->
+        <div class="text-center mb-5">
+
+            <h1 class="display-5 fw-bold">
+                🎤 AI Voice Cooking Assistant
+            </h1>
+
+            <p class="text-muted fs-5">
+                Speak in English only
+            </p>
+
+            <div class="mt-3">
+
+                <span class="badge bg-dark p-2">
+                    How to cook biryani
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- BUTTON -->
+        <div class="text-center">
+
+            <button
+                onclick="startListening()"
+                class="btn btn-danger btn-lg px-5 py-3 rounded-pill shadow"
+            >
+                🎙 Start Speaking
+            </button>
+
+        </div>
+
+        <!-- STATUS -->
+        <div class="text-center mt-4">
+
+            <div id="status" class="alert alert-info">
+                Waiting for voice...
+            </div>
+
+        </div>
+
+        <hr class="my-5">
+
+        <!-- OUTPUT -->
+        <div class="row">
+
+            <!-- VOICE COMMAND -->
+            <div class="col-md-6 mb-4">
+
+                <div class="card border-0 shadow h-100">
+
+                    <div class="card-body">
+
+                        <h4 class="mb-4">
+                            🗣 Voice Command
+                        </h4>
+
+                        <div id="voiceText" class="alert alert-dark p-4">
+                            Waiting for voice...
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- RECIPE OUTPUT -->
+            <div class="col-md-6 mb-4">
+
+                <div class="card border-0 shadow h-100">
+
+                    <div class="card-body">
+
+                        <h4 class="mb-4">
+                            🍲 Recipe Instructions
+                        </h4>
+
+                        <div id="recipeOutput" class="alert alert-success p-4">
+                            Recipe instructions will appear here...
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function startListening() {
+
+    const recognition = new webkitSpeechRecognition();
+
+    recognition.lang = 'en-US';   // ✅ English only
+
+    recognition.start();
+
+    recognition.onresult = function(event) {
+
+        const text = event.results[0][0].transcript;
+
+        document.getElementById('voiceText').innerHTML = text;
+
+        fetchRecipe(text);
+    };
+}
+
+function fetchRecipe(command) {
+
+    command = command.toLowerCase();
+
+    console.log("VOICE COMMAND:", command);
+
+    fetch("/recipes/all-recipes/")
+        .then(response => response.json())
+        .then(data => {
+
+            console.log("API RESPONSE:", data);
+
+            let recipes = data.recipes || data; // ✅ FIX FLEXIBLE RESPONSE
+
+            let foundRecipe = null;
+
+            recipes.forEach(recipe => {
+
+                console.log("CHECKING:", recipe.name);
+
+                if (command.includes(recipe.name.toLowerCase())) {
+                    foundRecipe = recipe.name;
+                }
+
+            });
+
+            console.log("FOUND:", foundRecipe);
+
+            if (!foundRecipe) {
+
+                document.getElementById('recipeOutput').innerHTML = `
+                    <div class="alert alert-danger">
+                        ❌ Recipe not found
+                    </div>
+                `;
+                return;
+            }
+
+            fetch("/recipes/get-recipe/?recipe=" + encodeURIComponent(foundRecipe))
+                .then(response => response.json())
+                .then(data => {
+
+                    console.log("RECIPE DETAILS:", data);
+
+                    document.getElementById('recipeOutput').innerHTML = `
+                        <div class="card shadow border-0 p-4">
+                            <h2>🍲 ${data.name}</h2>
+                            <pre style="white-space: pre-wrap;">${data.description}</pre>
+                        </div>
+                    `;
+                });
+
+        })
+        .catch(error => {
+            console.error("ERROR:", error);
+
+            document.getElementById('recipeOutput').innerHTML = `
+                <div class="alert alert-danger">
+                    ❌ Server error while fetching recipe
+                </div>
+            `;
+        });
+}
+</script>
+
+{% endblock %}

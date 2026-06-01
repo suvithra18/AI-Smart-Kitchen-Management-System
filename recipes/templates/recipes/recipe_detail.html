@@ -1,0 +1,272 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+
+        <!-- IMAGE -->
+
+        {% if recipe.image %}
+
+            <img
+
+                src="{{ recipe.image.url }}"
+
+                class="img-fluid"
+
+                style="
+                    height:400px;
+                    object-fit:cover;
+                    width:100%;
+                "
+            >
+
+        {% endif %}
+
+        <!-- CONTENT -->
+
+        <div class="p-5">
+
+            <!-- TITLE -->
+
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
+
+                <div>
+
+                    <h1 class="fw-bold mb-3">
+
+                        🍲 {{ recipe.name }}
+
+                    </h1>
+
+                    <!-- MEAL + FOOD TYPE -->
+
+                    <div class="d-flex gap-2 flex-wrap mb-3">
+
+                        <span class="badge bg-info text-dark p-2">
+
+                            🍱 {{ recipe.meal_type }}
+
+                        </span>
+
+                        {% if recipe.food_type == 'Veg' %}
+
+                            <span class="badge bg-success p-2">
+
+                                🟢 Veg
+
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge bg-danger p-2">
+
+                                🔴 Non-Veg
+
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+                <!-- BADGES -->
+
+                <div class="d-flex gap-2 flex-wrap">
+
+                    <span class="badge bg-dark p-3">
+
+                        ⏱ {{ recipe.cooking_time }} mins
+
+                    </span>
+
+                    <span class="badge bg-warning text-dark p-3">
+
+                        🔥 {{ recipe.difficulty }}
+
+                    </span>
+
+                    <span class="badge bg-success p-3">
+
+                        🍽 {{ recipe.cuisine_type }}
+
+                    </span>
+
+                    <span class="badge bg-secondary p-3">
+
+                        👁 {{ recipe.views }} Views
+
+                    </span>
+
+                    <span class="badge bg-danger p-3">
+
+                        ❤️ {{ recipe.favorites.all|length }} Likes
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <!-- DESCRIPTION -->
+
+            <div class="mt-4">
+
+                <h4 class="mb-3">
+
+                    📖 Recipe Description
+
+                </h4>
+
+                <p class="fs-5 text-muted">
+
+                    {{ recipe.description }}
+
+                </p>
+
+            </div>
+
+            <!-- BASE PERSONS -->
+
+            <div class="alert alert-light border mt-4 p-4 rounded-4">
+
+                <h4 class="mb-0">
+
+                    👥 Base Persons:
+                    <strong>
+
+                        {{ recipe.base_persons }}
+
+                    </strong>
+
+                </h4>
+
+            </div>
+
+            <!-- START COOKING -->
+
+            <div class="card shadow border-0 p-4 mt-5 rounded-4">
+
+                <h3 class="mb-4 fw-bold">
+
+                    🍲 Start Cooking
+
+                </h3>
+
+                <p class="text-muted">
+
+                    Select how many persons you want to cook for
+
+                </p>
+
+                <form
+    action="{% url 'cooking_live' recipe.id %}"
+    method="GET"
+>
+
+                    <!-- PERSON INPUT -->
+
+                    <div class="mb-4">
+
+                        <label class="form-label fw-bold">
+
+                            👥 Number of Persons
+
+                        </label>
+
+                        <input
+                            type="number"
+                            name="persons"
+                            class="form-control form-control-lg"
+                            value="{{ recipe.base_persons }}"
+                            min="1"
+                            required
+                        >
+
+                    </div>
+
+                    <!-- BUTTONS -->
+
+                    <div class="row g-3">
+
+                        <!-- START COOKING -->
+
+                        <div class="col-md-4">
+
+                            <button
+                                type="submit"
+                                class="btn btn-danger btn-lg w-100 rounded-pill"
+                            >
+
+                                🍽 Start Cooking
+
+                            </button>
+
+                        </div>
+
+                        <!-- FAVORITE -->
+
+                        <div class="col-md-4">
+
+                            <a
+
+                                href="{% url 'favorite_recipe' recipe.id %}"
+
+                                class="btn btn-outline-danger btn-lg w-100 rounded-pill"
+
+                            >
+
+                                ❤️ Favorite
+
+                            </a>
+
+                        </div>
+
+                        <!-- COST -->
+
+                        <div class="col-md-4">
+
+                            <a
+                                href="{% url 'recipe_cost' recipe.id %}"
+                                class="btn btn-success btn-lg w-100 rounded-pill"
+                            >
+
+                                💰 Recipe Cost
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+                <!-- BACK BUTTON -->
+
+                <div class="mt-4">
+
+                    <a
+                        href="{% url 'recipe_list' %}"
+                        class="btn btn-dark btn-lg w-100 rounded-pill"
+                    >
+
+                        🔙 Back to Recipes
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

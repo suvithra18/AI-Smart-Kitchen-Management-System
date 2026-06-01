@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-8">
+
+            <div class="card shadow-lg border-0 rounded-4 p-5">
+
+                <!-- TITLE -->
+
+                <div class="text-center mb-5">
+
+                    <h1 class="fw-bold">
+
+                        🍲 Add Recipe
+
+                    </h1>
+
+                    <p class="text-muted">
+
+                        Create delicious recipes for your Smart Kitchen
+
+                    </p>
+
+                </div>
+
+                <!-- FORM -->
+
+                <form
+                    method="POST"
+                    enctype="multipart/form-data"
+                >
+
+                    {% csrf_token %}
+
+                    <!-- RECIPE NAME -->
+
+                    <div class="mb-4">
+
+                        <label class="form-label fw-bold">
+
+                            Recipe Name
+
+                        </label>
+
+                        {{ form.name }}
+
+                    </div>
+
+                    <!-- DESCRIPTION -->
+
+                    <div class="mb-4">
+
+                        <label class="form-label fw-bold">
+
+                            Description
+
+                        </label>
+
+                        {{ form.description }}
+
+                    </div>
+
+                    <!-- BASE PERSONS -->
+
+                    <div class="mb-4">
+
+                        <label class="form-label fw-bold">
+
+                            Base Persons
+
+                        </label>
+
+                        {{ form.base_persons }}
+
+                    </div>
+
+                    <!-- COOKING TIME -->
+
+                    <div class="mb-4">
+
+                        <label class="form-label fw-bold">
+
+                            ⏱ Cooking Time (Minutes)
+
+                        </label>
+
+                        {{ form.cooking_time }}
+
+                    </div>
+
+                    <!-- DIFFICULTY -->
+
+                    <div class="mb-4">
+
+                        <label class="form-label fw-bold">
+
+                            🔥 Difficulty Level
+
+                        </label>
+
+                        {{ form.difficulty }}
+
+                    </div>
+
+                    <!-- CUISINE -->
+
+                    <div class="mb-4">
+
+                        <label class="form-label fw-bold">
+
+                            🍽 Cuisine Type
+
+                        </label>
+
+                        {{ form.cuisine_type }}
+
+                    </div>
+
+                    <!-- IMAGE -->
+
+                    <div class="mb-4">
+
+                        <label class="form-label fw-bold">
+
+                            📸 Recipe Image
+
+                        </label>
+
+                        {{ form.image }}
+
+                    </div>
+
+                    <!-- BUTTON -->
+
+                    <button
+                        type="submit"
+                        class="btn btn-success btn-lg w-100 rounded-pill"
+                    >
+
+                        ✅ Save Recipe
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

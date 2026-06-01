@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="text-center mb-5">
+
+        <h1 class="display-5 fw-bold">
+
+            🌍 Carbon Footprint AI
+
+        </h1>
+
+        <p class="text-muted">
+
+            Sustainable Smart Kitchen Analytics
+
+        </p>
+
+    </div>
+
+    <!-- MAIN STATS -->
+
+    <div class="row text-center mb-5">
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card shadow-lg border-0 p-4 rounded-4">
+
+                <h3>
+                    🌫 Carbon Footprint
+                </h3>
+
+                <h1 class="mt-3">
+
+                    {{ result.total_carbon }}
+
+                </h1>
+
+                <p>
+                    kg CO₂
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card shadow-lg border-0 p-4 rounded-4">
+
+                <h3>
+                    🍱 Waste Score
+                </h3>
+
+                <h1 class="mt-3">
+
+                    {{ result.waste_score }}
+
+                </h1>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card shadow-lg border-0 p-4 rounded-4">
+
+                <h3>
+                    🌱 Sustainability
+                </h3>
+
+                <h1 class="mt-3">
+
+                    {{ result.sustainability_score }}%
+
+                </h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ECO STATUS -->
+
+    <div class="card shadow-lg border-0 p-5 rounded-4 mb-5 text-center">
+
+        <h2>
+
+            Eco Status:
+            {{ result.eco_status }}
+
+        </h2>
+
+    </div>
+
+    <!-- INGREDIENT REPORT -->
+
+    <div class="card shadow-lg border-0 p-5 rounded-4">
+
+        <h2 class="mb-4">
+
+            📊 Ingredient Carbon Report
+
+        </h2>
+
+        <table class="table">
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Ingredient
+                    </th>
+
+                    <th>
+                        Carbon Output
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for item in result.reports %}
+
+                    <tr>
+
+                        <td>
+
+                            {{ item.ingredient }}
+
+                        </td>
+
+                        <td>
+
+                            {{ item.carbon }} kg CO₂
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

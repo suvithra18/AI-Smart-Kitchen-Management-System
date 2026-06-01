@@ -1,0 +1,328 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <!-- HEADER -->
+
+    <div class="d-flex justify-content-between align-items-center mb-5 flex-wrap">
+
+        <div>
+
+            <h1 class="fw-bold">
+
+                🍽️ Recipe Collection
+
+            </h1>
+
+            <p class="text-muted">
+
+                Discover delicious smart kitchen recipes
+
+            </p>
+
+        </div>
+
+        <a
+            href="{% url 'recipe_create' %}"
+            class="btn btn-success btn-lg rounded-pill px-4 shadow-sm"
+        >
+
+            ➕ Add Recipe
+
+        </a>
+
+    </div>
+
+
+    <!-- GUEST MEAL FEATURE -->
+
+    <div class="card border-0 shadow-lg rounded-5 overflow-hidden mb-5 feature-card">
+
+        <div
+            class="p-5 text-white"
+            style="
+                background: linear-gradient(
+                    135deg,
+                    #ff6b6b,
+                    #ff922b
+                );
+            "
+        >
+
+            <div class="row align-items-center">
+
+                <!-- LEFT -->
+
+                <div class="col-md-8">
+
+                    <h1 class="fw-bold display-5 mb-3">
+
+                        🍽️ Guest Meal Calculator
+
+                    </h1>
+
+                    <p class="fs-5 opacity-75 mb-4">
+
+                        Instantly calculate ingredients
+                        for unexpected guests using smart AI scaling
+
+                    </p>
+
+                    <a
+                        href="/recipes/guest-meal/"
+                        class="btn btn-light btn-lg rounded-pill px-5 fw-bold"
+                    >
+
+                        Open Calculator
+
+                    </a>
+
+                </div>
+
+                <!-- RIGHT -->
+
+                <div class="col-md-4 text-center">
+
+                    <div
+                        class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center shadow-lg"
+                        style="
+                            width:180px;
+                            height:180px;
+                            font-size:70px;
+                        "
+                    >
+
+                        👨‍🍳
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- RECIPES -->
+
+    <div class="row">
+
+        {% for recipe in recipes %}
+
+            <div class="col-md-4 mb-4">
+
+                <div class="card shadow-lg border-0 h-100 rounded-4 overflow-hidden feature-card">
+
+                    <!-- IMAGE -->
+
+                    {% if recipe.image %}
+
+                        <img
+
+                            src="{{ recipe.image.url }}"
+
+                            class="card-img-top"
+
+                            style="
+                                height:250px;
+                                object-fit:cover;
+                            "
+                        >
+
+                    {% else %}
+
+                        <div
+                            class="bg-light d-flex align-items-center justify-content-center"
+                            style="height:250px;"
+                        >
+
+                            <h1>
+
+                                🍲
+
+                            </h1>
+
+                        </div>
+
+                    {% endif %}
+
+                    <!-- BODY -->
+
+                    <div class="card-body p-4 d-flex flex-column">
+
+                        <!-- NAME -->
+
+                        <h3 class="fw-bold mb-3">
+
+                            {{ recipe.name }}
+
+                        </h3>
+
+                        <!-- DESCRIPTION -->
+
+                        <p class="text-muted flex-grow-1">
+
+                            {{ recipe.description|truncatewords:20 }}
+
+                        </p>
+
+                        <!-- BADGES -->
+
+                        <div class="mb-4">
+
+                            <div class="d-flex gap-2 flex-wrap">
+
+                                <!-- PERSONS -->
+
+                                <span class="badge bg-primary p-2">
+
+                                    👥 {{ recipe.base_persons }} Persons
+
+                                </span>
+
+                                <!-- TIME -->
+
+                                <span class="badge bg-dark p-2">
+
+                                    ⏱ {{ recipe.cooking_time }} mins
+
+                                </span>
+
+                                <!-- DIFFICULTY -->
+
+                                <span class="badge bg-warning text-dark p-2">
+
+                                    🔥 {{ recipe.difficulty }}
+
+                                </span>
+
+                                <!-- CUISINE -->
+
+                                <span class="badge bg-success p-2">
+
+                                    🍽 {{ recipe.cuisine_type }}
+
+                                </span>
+
+                                <!-- MEAL TYPE -->
+
+                                <span class="badge bg-info text-dark p-2">
+
+                                    🍱 {{ recipe.meal_type }}
+
+                                </span>
+
+                                <!-- VEG / NON VEG -->
+
+                                {% if recipe.food_type == 'Veg' %}
+
+                                    <span class="badge bg-success p-2">
+
+                                        🟢 Veg
+
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="badge bg-danger p-2">
+
+                                        🔴 Non-Veg
+
+                                    </span>
+
+                                {% endif %}
+
+                                <!-- VIEWS -->
+
+                                <span class="badge bg-secondary p-2">
+
+                                    👁 {{ recipe.views }} Views
+
+                                </span>
+
+                                <!-- FAVORITES -->
+
+                                <span class="badge bg-pink p-2">
+
+                                    ❤️ {{ recipe.favorites.all|length }} Likes
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <!-- BUTTON -->
+
+                        <a
+                            href="{% url 'recipe_detail' recipe.id %}"
+                            class="btn btn-dark btn-lg rounded-pill mt-auto"
+                        >
+
+                            👨‍🍳 View Details
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        {% empty %}
+
+            <div class="col-12">
+
+                <div class="alert alert-light border shadow-sm text-center p-5 rounded-4">
+
+                    <h3>
+
+                        😔 No Recipes Found
+
+                    </h3>
+
+                    <p class="text-muted">
+
+                        Add your first delicious recipe
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+<!-- STYLES -->
+
+<style>
+
+.feature-card{
+
+    transition:0.3s;
+}
+
+.feature-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,0.15);
+}
+
+.bg-pink{
+
+    background:#ff4d6d;
+}
+
+</style>
+
+{% endblock %}

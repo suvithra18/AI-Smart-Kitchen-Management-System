@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="mb-5">
+    🤖 AI Smart Cooking System
+</h1>
+
+<div class="row">
+
+    {% for item in recipes %}
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card shadow border-0 p-4 h-100">
+
+                <h3>
+                    {{ item.recipe }}
+                </h3>
+
+                <hr>
+
+                <p>
+
+                    Ingredients Used:
+
+                    <b>
+                        {{ item.ingredients|join:", " }}
+                    </b>
+
+                </p>
+
+                <h4>
+
+                    👨‍👩‍👧‍👦
+
+                    Can Serve:
+
+                    <span class="text-success">
+
+                        {{ item.persons }}
+
+                    </span>
+
+                    Persons
+
+                </h4>
+
+                <div class="alert alert-success mt-3">
+
+                    ✅ Can Cook Now
+
+                </div>
+
+            </div>
+
+        </div>
+
+    {% empty %}
+
+        <div class="alert alert-danger">
+
+            No possible recipes found.
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}
