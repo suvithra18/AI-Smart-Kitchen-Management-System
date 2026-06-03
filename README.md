@@ -54,3 +54,9 @@ A web-based Smart Kitchen Management System built using Django that helps users 
 - Health Recipes
 - Carbon Footprint Calculator
 
+## ⭐ Future Enhancements
+
+- AI Recipe Recommendation
+- Smart Grocery Prediction
+- Multilingual Voice Assistant
+- Mobile Application
