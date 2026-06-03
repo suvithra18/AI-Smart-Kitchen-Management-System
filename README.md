@@ -60,3 +60,24 @@ A web-based Smart Kitchen Management System built using Django that helps users 
 - Smart Grocery Prediction
 - Multilingual Voice Assistant
 - Mobile Application
+
+## 📸Screenshoots
+ <p align="center">
+  <img src="screenshots/receipe.png" width="45%">
+  <img src="screenshots/recipe cost calculator.png" width="45%">
+</p>
+
+<p align="center">
+  <img src="screenshots/inventory.png" width="45%">
+  <img src="screenshots/voice" width="45%">
+</p>
+
+<p align="center">
+  <img src="screenshots/meal palnner.png" width="45%">
+  <img src="screenshots/meal_calculator" width="45%">
+</p>
+
+<p align="center">
+  <img src="screenshots/analytics.png" width="45%">
+  <img src="screenshots/carbon footprint" width="45%">
+</p>
