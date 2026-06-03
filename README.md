@@ -1,70 +1,56 @@
-**Smart Kitchen Management System**
+# 🍽️ Smart Kitchen Management System
 
+A web-based Smart Kitchen Management System built using Django that helps users manage recipes, inventory, meal planning, and AI-powered cooking assistance.
 
-Smart Kitchen Management System is a web-based application developed using Django that helps users manage recipes, inventory, meal planning, ingredient scaling, and AI-powered kitchen assistance. The system provides intelligent cooking support through automation and smart kitchen features.
+## 🚀 Features
 
-🚀 Features
-🍲 Recipe Management
-📦 Inventory Management
-👥 Guest Meal Calculator
-💰 Recipe Cost Calculator
-❤️ Favorite Recipes
-📸 Recipe Image Upload
-🎤 AI Voice Cooking Assistant
-🥗 Health Recipe Suggestions
-🍽️ AI Meal Planner
-♻️ Leftover Food Transformation
-🌍 Carbon Footprint Calculator
-🔐 User Authentication & Authorization
-📊 Dashboard Analytics
-🛠️ Technologies Used
-Backend
-Python
-Django
-Django REST Framework (DRF)
-Frontend
-HTML
-CSS
-Bootstrap
-JavaScript
-Database
-SQLite
-Additional Tools
-JWT Authentication
-Speech Recognition API
-Pillow (Image Uploads)
-📂 Project Modules
-Recipe Module
-Add/Edit/Delete Recipes
-Recipe Images
-Cooking Time & Difficulty
-Cuisine Type
-Favorite Recipes
-Inventory Module
-Ingredient Management
-Stock Tracking
-Low Stock Alerts
-Smart Kitchen Module
-Guest Meal Scaling
-AI Voice Assistant
-Meal Planner
-Nutrition Dashboard
-Carbon Footprint Calculator
-📸 Screenshots
+- 🍲 Recipe Management
+- 📦 Inventory Management
+- 👥 Guest Meal Calculator
+- 💰 Recipe Cost Calculator
+- ❤️ Favorite Recipes
+- 📸 Recipe Image Upload
+- 🎤 AI Voice Cooking Assistant
+- 🥗 Health Recipe Suggestions
+- 🍽️ AI Meal Planner
+- ♻️ Leftover Food Transformation
+- 🌍 Carbon Footprint Calculator
+- 🔐 User Authentication
+- 📊 Dashboard Analytics
 
-Add screenshots of:
+## 🛠️ Technologies Used
 
-Dashboard
-Recipe Management
-Inventory Management
-Guest Meal Calculator
-Voice Assistant
+### Backend
+- Python
+- Django
+- Django REST Framework (DRF)
 
+### Frontend
+- HTML
+- CSS
+- Bootstrap
+- JavaScript
 
+### Database
+- SQLite
 
-⭐ Future Enhancements
-AI Recipe Recommendation Engine
-Multilingual Voice Assistant
-Smart Grocery Prediction
-Mobile Application
-AI Nutrition Analysis
+## 📂 Modules
+
+### Recipe Management
+- Create, Update, Delete Recipes
+- Recipe Images
+- Favorite Recipes
+- Cost Calculation
+
+### Inventory Management
+- Ingredient Tracking
+- Stock Monitoring
+- Low Stock Alerts
+
+### Smart Kitchen Features
+- Guest Meal Scaling
+- Voice Cooking Assistant
+- AI Meal Planner
+- Health Recipes
+- Carbon Footprint Calculator
+
