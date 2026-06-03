@@ -63,21 +63,21 @@ A web-based Smart Kitchen Management System built using Django that helps users 
 
 ## 📸Screenshoots
  <p align="center">
-  <img src="screenshots/receipe.png" width="45%">
-  <img src="screenshots/recipe cost calculator.png" width="45%">
+  <img src="screenshoots/receipe.png" width="45%">
+  <img src="screenshoots/recipe cost calculator.png" width="45%">
 </p>
 
 <p align="center">
-  <img src="screenshots/inventory.png" width="45%">
-  <img src="screenshots/voice" width="45%">
+  <img src="screenshoots/inventory.png" width="45%">
+  <img src="screenshoots/voice" width="45%">
 </p>
 
 <p align="center">
-  <img src="screenshots/meal palnner.png" width="45%">
-  <img src="screenshots/meal_calculator" width="45%">
+  <img src="screenshoots/meal palnner.png" width="45%">
+  <img src="screenshoots/meal_calculator" width="45%">
 </p>
 
 <p align="center">
-  <img src="screenshots/analytics.png" width="45%">
-  <img src="screenshots/carbon footprint" width="45%">
+  <img src="screenshoots/analytics.png" width="45%">
+  <img src="screenshoots/carbon footprint" width="45%">
 </p>
