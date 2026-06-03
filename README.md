@@ -1,5 +1,5 @@
-Smart Kitchen Management System
-📌 Project Overview
+**Smart Kitchen Management System**
+
 
 Smart Kitchen Management System is a web-based application developed using Django that helps users manage recipes, inventory, meal planning, ingredient scaling, and AI-powered kitchen assistance. The system provides intelligent cooking support through automation and smart kitchen features.
 
