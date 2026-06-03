@@ -69,15 +69,15 @@ A web-based Smart Kitchen Management System built using Django that helps users 
 
 <p align="center">
   <img src="screenshoots/inventory.png" width="45%">
-  <img src="screenshoots/voice" width="45%">
+  <img src="screenshoots/voice.png" width="45%">
 </p>
 
 <p align="center">
   <img src="screenshoots/meal palnner.png" width="45%">
-  <img src="screenshoots/meal_calculator" width="45%">
+  <img src="screenshoots/meal_calculator.png" width="45%">
 </p>
 
 <p align="center">
   <img src="screenshoots/analytics.png" width="45%">
-  <img src="screenshoots/carbon footprint" width="45%">
+  <img src="screenshoots/carbon footprint.png" width="45%">
 </p>
