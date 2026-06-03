@@ -69,7 +69,7 @@ A web-based Smart Kitchen Management System built using Django that helps users 
 
 <p align="center">
   <img src="screenshoots/inventory.png" width="45%">
-  <img src="screenshoots/voice.png" width="45%">
+  <img src="https://github.com/suvithra18/AI-Smart-Kitchen-Management-System/blob/main/screenshoots/voice%20.png" width="45%">
 </p>
 
 <p align="center">
